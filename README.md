@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ComuPage — 中国数字游民社区地图
 
-## Getting Started
+收录中国各地数字游民社区，在地图上发现你的下一个目的地。
 
-First, run the development server:
+**comupage.com**
+
+## 收录范围
+
+| 类型 | 说明 |
+|---|---|
+| Coliving | 提供住宿的共居空间 |
+| Coworking | 共享办公空间 |
+| OPC | 开放创作社区 (Open Creative Community) |
+| Hybrid | 综合型（住宿+办公+社区） |
+
+面向：数字游民、远程工作者、自由职业者、艺术家、创作者、开发者。
+
+## 当前阶段
+
+✅ MVP — 种子数据 15 个社区，地图 + 列表 + 筛选已完成
+
+## 本地开发
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# → http://localhost:3000
+npm run build   # 构建
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 技术栈
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Next.js 16 (App Router)
+- MapLibre GL (OpenStreetMap tiles)
+- Tailwind CSS
+- TypeScript
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 项目结构
 
-## Learn More
+```
+src/
+├── app/                     # Next.js 页面
+│   ├── page.tsx             # 首页（地图 + 侧栏列表）
+│   └── layout.tsx           # 根布局
+├── components/
+│   ├── map/MapView.tsx      # 地图组件
+│   └── community/           # 社区卡片、详情、筛选
+├── data/communities.ts      # 种子数据
+├── types/community.ts       # 类型定义
+└── lib/
+```
 
-To learn more about Next.js, take a look at the following resources:
+## 更新节奏
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| 阶段 | 频率 | 方式 |
+|---|---|---|
+| MVP | 每周 | 手动收集 + 用户提交 |
+| V2 | 每日 | 半自动检测（小红书/公众号） |
+| V3 | 每日/每月 | 自动新增检测 + 每月全量复检 |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## X402 数据协议
 
-## Deploy on Vercel
+网页免费浏览。结构化数据通过 X402 协议付费获取。
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**面向普通用户：** 全部免费，网页可查所有社区。
+**面向机构/开发者：** 通过 API 批量获取数据，支持 JSON / CSV 导出。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+付费内容：
+- 历史变更记录
+- 批量导出
+- Webhook 变更推送
+- 联系方式验证状态
+
+支付方式：微信 / 支付宝（可开发票）
